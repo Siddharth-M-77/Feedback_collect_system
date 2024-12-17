@@ -64,7 +64,7 @@ const Feedback = () => {
       {/* Feedback Form */}
       <form
         onSubmit={handleSubmit}
-        className="p-6 w-full lg:w-[40%] mx-auto flex flex-col gap-4 bg-gray-100 h-auto text-black rounded-lg shadow-md"
+        className="p-6 w-full lg:w-[40%] h-fit  mx-auto flex flex-col gap-4 bg-gray-100  text-black rounded-lg shadow-md"
       >
         <h1 className="text-2xl md:text-3xl font-bold text-center">
           Feedback Form
