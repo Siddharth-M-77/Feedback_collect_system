@@ -50,7 +50,7 @@ const Feedback = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 p-4 md:p-8">
+    <div className="flex w-screen  mx-auto flex-col lg:flex-row gap-8 p-4 md:p-8">
       {/* Feedback Form */}
       <form
         onSubmit={handleSubmit}
