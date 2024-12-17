@@ -139,13 +139,14 @@ const Feedback = () => {
       </form>
 
       {/* Feedback Display */}
-      <div className="w-full lg:w-[60%] bg-indigo-600 p-6 rounded-lg shadow-md text-white">
-        <h2 className="text-2xl font-bold mb-4">Feedback Received</h2>
+      <div className="w-full lg:w-[50%] bg-indigo-600 p-6 rounded-lg shadow-md text-white">
+        <h2 className="text-2xl font-bold mb-4 text-center ">Feedback Received</h2>
 
         {/* Average Rating for Each Type */}
         <div className="flex flex-wrap justify-center gap-6 text-center mx-auto w-full ">
           {Object.keys(groupedFeedback).length > 0 ? (
             Object.keys(groupedFeedback).map((type) => {
+              console.log(groupedFeedback)
               const averageRating = (
                 groupedFeedback[type].totalRating / groupedFeedback[type].count
               ).toFixed(2);
