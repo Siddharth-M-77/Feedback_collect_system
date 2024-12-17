@@ -22,15 +22,6 @@ const Feedback = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const calculateAverageRating = () => {
-    if (allFeedback.length === 0) return 0;
-    const total = allFeedback.reduce(
-      (sum, feedback) => sum + parseInt(feedback.rating),
-      0
-    );
-    return (total / allFeedback.length).toFixed(2);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -49,8 +40,27 @@ const Feedback = () => {
     });
   };
 
+  // Group feedbacks by type and calculate average rating
+  const groupFeedbackByType = () => {
+    const groupedFeedback = {};
+
+    allFeedback.forEach((feedback) => {
+      const type = feedback.feedbackType;
+
+      if (!groupedFeedback[type]) {
+        groupedFeedback[type] = { totalRating: 0, count: 0 };
+      }
+      groupedFeedback[type].totalRating += parseInt(feedback.rating);
+      groupedFeedback[type].count += 1;
+    });
+
+    return groupedFeedback;
+  };
+
+  const groupedFeedback = groupFeedbackByType();
+
   return (
-    <div className="flex w-screen  mx-auto flex-col lg:flex-row gap-8 p-4 md:p-8">
+    <div className="flex w-screen mx-auto flex-col lg:flex-row gap-8 p-4 md:p-8">
       {/* Feedback Form */}
       <form
         onSubmit={handleSubmit}
@@ -132,42 +142,59 @@ const Feedback = () => {
       <div className="w-full lg:w-[60%] bg-indigo-600 p-6 rounded-lg shadow-md text-white">
         <h2 className="text-2xl font-bold mb-4">Feedback Received</h2>
 
-        {/* Total Feedback and Average Rating */}
-        <div className="mb-4">
-          <p>
-            <strong>Total Feedback:</strong> {allFeedback.length}
-          </p>
-          <p>
-            <strong>Average Rating:</strong> {calculateAverageRating()}
-          </p>
+        {/* Average Rating for Each Type */}
+        <div className="flex flex-wrap justify-center gap-6 text-center mx-auto w-full ">
+          {Object.keys(groupedFeedback).length > 0 ? (
+            Object.keys(groupedFeedback).map((type) => {
+              const averageRating = (
+                groupedFeedback[type].totalRating / groupedFeedback[type].count
+              ).toFixed(2);
+              return (
+                <div
+                  key={type}
+                  className="bg-white text-black p-4 rounded-lg shadow-md w-[200px]"
+                >
+                  <h3 className="text-lg font-bold mb-2">{type}</h3>
+                  <p>
+                    <strong>Average Rating:</strong> {averageRating}
+                  </p>
+                </div>
+              );
+            })
+          ) : (
+            <p>No feedback available yet.</p>
+          )}
         </div>
 
-        {allFeedback.length === 0 ? (
-          <p>No feedback available yet.</p>
-        ) : (
-          allFeedback.map((feedback, index) => (
-            <div
-              key={index}
-              className="bg-white text-black p-4 rounded-md shadow-md mb-4"
-            >
-              <p>
-                <strong>Name:</strong> {feedback.name}
-              </p>
-              <p>
-                <strong>Email:</strong> {feedback.email}
-              </p>
-              <p>
-                <strong>Feedback Type:</strong> {feedback.feedbackType}
-              </p>
-              <p>
-                <strong>Rating:</strong> {feedback.rating}
-              </p>
-              <p>
-                <strong>Comment:</strong> {feedback.comment}
-              </p>
-            </div>
-          ))
-        )}
+        {/* All Feedback List */}
+        <div className="mt-6">
+          {allFeedback.length === 0 ? (
+            <p>No feedback available yet.</p>
+          ) : (
+            allFeedback.map((feedback, index) => (
+              <div
+                key={index}
+                className="bg-white text-black p-4 rounded-md shadow-md mb-4"
+              >
+                <p>
+                  <strong>Name:</strong> {feedback.name}
+                </p>
+                <p>
+                  <strong>Email:</strong> {feedback.email}
+                </p>
+                <p>
+                  <strong>Feedback Type:</strong> {feedback.feedbackType}
+                </p>
+                <p>
+                  <strong>Rating:</strong> {feedback.rating}
+                </p>
+                <p>
+                  <strong>Comment:</strong> {feedback.comment}
+                </p>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );
