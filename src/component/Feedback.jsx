@@ -159,7 +159,7 @@ const Feedback = () => {
                   <p>
                     <strong>Average Rating:</strong> {averageRating}
                   </p>
-                  <p>total feedback: {groupedFeedback[type].count}</p>
+                  <p className="font-semibold capitalize mt-2">total feedback: <span>{groupedFeedback[type].count}</span></p>
                 </div>
               );
             })
