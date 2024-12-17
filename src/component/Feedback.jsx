@@ -159,6 +159,7 @@ const Feedback = () => {
                   <p>
                     <strong>Average Rating:</strong> {averageRating}
                   </p>
+                  <p>total feedback: {groupedFeedback[type].count}</p>
                 </div>
               );
             })
