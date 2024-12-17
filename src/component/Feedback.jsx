@@ -140,7 +140,7 @@ const Feedback = () => {
 
       {/* Feedback Display */}
       <div className="w-full lg:w-[50%] bg-indigo-600 p-6 rounded-lg shadow-md text-white">
-        <h2 className="text-2xl font-bold mb-4 text-center ">Feedback Received</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center ">Feedback Received {allFeedback.length}</h2>
 
         {/* Average Rating for Each Type */}
         <div className="flex flex-wrap justify-center gap-6 text-center mx-auto w-full ">
