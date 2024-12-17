@@ -50,12 +50,15 @@ const Feedback = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col lg:flex-row gap-8 p-4 md:p-8">
+      {/* Feedback Form */}
       <form
         onSubmit={handleSubmit}
-        className="p-8 w-[100%] overflow-hidden mx-auto flex flex-col gap-5 bg-gray-100 h-auto text-black rounded-lg shadow-md"
+        className="p-6 w-full lg:w-[40%] mx-auto flex flex-col gap-4 bg-gray-100 h-auto text-black rounded-lg shadow-md"
       >
-        <h1 className="text-3xl font-bold text-center">Feedback Form</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-center">
+          Feedback Form
+        </h1>
 
         {/* Feedback Type */}
         <select
@@ -96,7 +99,7 @@ const Feedback = () => {
           name="comment"
           value={formData.comment}
           onChange={handleChange}
-          rows="5"
+          rows="4"
           placeholder="Enter your comment"
           className="bg-gray-200 px-4 py-2 rounded-md border border-gray-300"
         ></textarea>
@@ -125,12 +128,12 @@ const Feedback = () => {
         </button>
       </form>
 
-      {/* Display Feedback */}
-      <div className="w-2/3 min-h-screen bg-indigo-600 p-8">
-        <h2 className="text-2xl text-white font-bold mb-4">Feedback Received</h2>
+      {/* Feedback Display */}
+      <div className="w-full lg:w-[60%] bg-indigo-600 p-6 rounded-lg shadow-md text-white">
+        <h2 className="text-2xl font-bold mb-4">Feedback Received</h2>
 
-        {/* Display Total Feedback and Average Rating */}
-        <div className="text-white mb-6">
+        {/* Total Feedback and Average Rating */}
+        <div className="mb-4">
           <p>
             <strong>Total Feedback:</strong> {allFeedback.length}
           </p>
@@ -140,12 +143,12 @@ const Feedback = () => {
         </div>
 
         {allFeedback.length === 0 ? (
-          <p className="text-white">No feedback available yet.</p>
+          <p>No feedback available yet.</p>
         ) : (
           allFeedback.map((feedback, index) => (
             <div
               key={index}
-              className="bg-white p-4 rounded-lg shadow-md mb-4 text-black"
+              className="bg-white text-black p-4 rounded-md shadow-md mb-4"
             >
               <p>
                 <strong>Name:</strong> {feedback.name}
@@ -166,7 +169,7 @@ const Feedback = () => {
           ))
         )}
       </div>
-    </>
+    </div>
   );
 };
 
