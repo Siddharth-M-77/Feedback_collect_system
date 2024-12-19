@@ -3,9 +3,9 @@ import Feedback from "./component/Feedback";
 
 function App() {
   return (
-    <>
+    <div className="w-screen">
       <Feedback />
-    </>
+    </div>
   );
 }
 

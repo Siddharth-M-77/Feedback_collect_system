@@ -60,7 +60,7 @@ const Feedback = () => {
   const groupedFeedback = groupFeedbackByType();
 
   return (
-    <div className="flex w-screen mx-auto flex-col lg:flex-row gap-8 p-4 md:p-8">
+    <div className="flex container mx-auto flex-col lg:flex-col items-center gap-8 p-4 md:p-8">
       {/* Feedback Form */}
       <form
         onSubmit={handleSubmit}
@@ -139,7 +139,7 @@ const Feedback = () => {
       </form>
 
       {/* Feedback Display */}
-      <div className="w-full lg:w-[50%] bg-indigo-600 p-6 rounded-lg shadow-md text-white">
+      <div className="w-full lg:w-[60%] bg-indigo-600 p-6 rounded-lg shadow-md text-white">
         <h2 className="text-2xl font-bold mb-4 text-center ">Feedback Received {allFeedback.length}</h2>
 
         {/* Average Rating for Each Type */}
@@ -170,9 +170,7 @@ const Feedback = () => {
 
         {/* All Feedback List */}
         <div className="mt-6">
-          {allFeedback.length === 0 ? (
-            <p>No feedback available yet.</p>
-          ) : (
+          {allFeedback && (
             allFeedback.map((feedback, index) => (
               <div
                 key={index}
